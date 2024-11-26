@@ -1,5 +1,5 @@
 const {cmd , commands} = require('../command')
-const fg = require('api-dylux'):
+const fg = require('api-dylux');
 const yts = require('yt-search');
 const fs = require('fs');
 const axios = require('axios');
@@ -168,3 +168,4 @@ async (conn, mek, m, { from, reply }) => {
         reply("¢συℓ∂ ησт ƒєт¢н α qυσтє. ρℓєαѕє тяу αgαιη ℓαтєя.");
     }
 });
+    
