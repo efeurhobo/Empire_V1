@@ -37,7 +37,7 @@
       "required": "true"
     },
     "ALIVE_IMG": {
-      "description": "ALIVE IMAGE,
+      "description": "ALIVE IMAGE",
       "value": "https://files.catbox.moe/g4qzs7.jpg",
       "required": "true"
     },
