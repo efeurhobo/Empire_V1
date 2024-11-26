@@ -1,4 +1,5 @@
 const config = require('../config');
+const { exec } = require('child_process');
 const { cmd, commands } = require('../command');
 const os = require("os");
 const { runtime } = require('../lib/functions');
@@ -86,3 +87,86 @@ console.log(e)
 reply(`${e}`)
 }
 })
+
+//set profile picture
+cmd({
+    pattern: "setpp",
+    desc: "Set bot profile picture.",
+    category: "owner",
+    react: "🖼️",
+    filename: __filename
+},
+async (conn, mek, m, { from, isOwner, quoted, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    if (!quoted || !quoted.message.imageMessage) return reply("❌ Please reply to an image.");
+    try {
+        const media = await conn.downloadMediaMessage(quoted);
+        await conn.updateProfilePicture(conn.user.jid, { url: media });
+        reply("🖼️ Profile picture updated successfully!");
+    } catch (error) {
+        reply(`❌ Error updating profile picture: ${error.message}`);
+    }
+});
+
+//block user
+cmd({
+    pattern: "block",
+    desc: "Block a user.",
+    category: "owner",
+    react: "🚫",
+    filename: __filename
+},
+async (conn, mek, m, { from, isOwner, quoted, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    if (!quoted) return reply("❌ Please reply to the user you want to block.");
+    const user = quoted.sender;
+    try {
+        await conn.updateBlockStatus(user, 'block');
+        reply(`🚫 User ${user} blocked successfully.`);
+    } catch (error) {
+        reply(`❌ Error blocking user: ${error.message}`);
+    }
+});
+
+//unblock user 
+cmd({
+    pattern: "unblock",
+    desc: "Unblock a user.",
+    category: "owner",
+    react: "✅",
+    filename: __filename
+},
+async (conn, mek, m, { from, isOwner, quoted, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    if (!quoted) return reply("❌ Please reply to the user you want to unblock.");
+    const user = quoted.sender;
+    try {
+        await conn.updateBlockStatus(user, 'unblock');
+        reply(`✅ User ${user} unblocked successfully.`);
+    } catch (error) {
+        reply(`❌ Error unblocking user: ${error.message}`);
+    }
+});
+
+//clear chats 
+cmd({
+    pattern: "clear",
+    desc: "Clear all chats from the bot.",
+    category: "owner",
+    react: "🧹",
+    filename: __filename
+},
+async (conn, mek, m, { from, isOwner, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    try {
+        const chats = conn.chats.all();
+        for (const chat of chats) {
+            await conn.modifyChat(chat.jid, 'delete');
+        }
+        reply("🧹 All chats cleared successfully!");
+    } catch (error) {
+        reply(`❌ Error clearing chats: ${error.message}`);
+    }
+});
+
+//
