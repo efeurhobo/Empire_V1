@@ -21,6 +21,11 @@
       "value": "𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞",
       "required": "true"
     },
+    "BOT_NAME": {
+      "description": "bot name",
+      "value": "𝐄𝐦𝐩𝐢𝐫𝐞_𝐕𝟏",
+      "required": "true"
+    },
     "AUTO_REACT": {
       "description": "TRUE OR FALSE",
       "value": "true",
