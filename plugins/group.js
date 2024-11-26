@@ -1,7 +1,6 @@
 const { cmd, commands } = require('../command');
-const { readEnv } = require('../lib/database');
+const { readEnv } = require('../lib/functions');
 const config = require('../config');
-const {cmd , commands} = require('../command');
 
 cmd({
     pattern: "tagall",
@@ -156,7 +155,7 @@ if (!isOwner || !isAdmins) return;
 if (!m.isGroup) return reply(mg.onlygroup);
 if (!isBotAdmins) return reply(mg.needbotadmins);     
             await conn.groupSettingUpdate(m.chat, "not_announcement")
-           const mass = await conn.sendMessage(m.chat, { text: '*GROUP CHAT UNMUTED BY SILENT-SOBX-MD* 🔒' }, { quoted: mek });
+        const mass = await conn.sendMessage(m.chat, { text: '*GROUP CHAT UNMUTED BY SILENT-SOBX-MD* 🔒' }, { quoted: mek });
             return await conn.sendMessage(m.chat, { react: { text: '🔒', key: mass.key } });
 } catch(e) {
 console.log(e);
