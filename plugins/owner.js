@@ -67,13 +67,22 @@ cmd({
 },
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let status = `*Uptime:*  ${runtime(process.uptime())}
-*Ram usage:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB
-*HostName:* ${os.hostname()}
-*Owner:* 𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐸𝐦𝐩𝑖𝑟𝑒`;
-        reply(`${status}`);
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        let status = `*╭──────────●●►*
+*Empire_V1 UPTIME↷*
+
+*_UPTIME:➠_*  ${runtime(process.uptime())}
+
+*_RAM USAGE:➠_* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+
+*_HOSTNAME:➠_* ${os.hostname()}
+
+*_OWNER:➠_* *${config.OWNER_MAME}*
+*╰──────────●●►*
+`
+await conn.sendMessage(from,{image:{url:config.ALIVE_IMG},caption:`${status}`},{quoted:mek})
+
+}catch(e){
+console.log(e)
+reply(`${e}`)
+}
+})
