@@ -2,6 +2,7 @@ const {cmd , commands} = require('../command')
 const fg = require('api-dylux'):
 const yts = require('yt-search');
 const fs = require('fs');
+const axios = require('axios');
 const path = require('path');
 
 cmd({
@@ -141,5 +142,29 @@ async (conn, mek, m, { quoted, q, reply }) => {
     } catch (error) {
         console.error(error);
         reply("❌ Failed to save and send the media. Please try again.");
+    }
+});
+
+//quotes
+cmd({
+    pattern: "quote",
+    desc: "Get a random inspiring quote.",
+    category: "fun",
+    react: "💬",
+    filename: __filename
+},
+async (conn, mek, m, { from, reply }) => {
+    try {
+        const response = await axios.get('https://api.quotable.io/random');
+        const quote = response.data;
+        const message = `
+💬 "${quote.content}"
+- ${quote.author}
+*QUOTES BY 𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞*
+        `;
+        return reply(message);
+    } catch (e) {
+        console.error("Error fetching quote:", e);
+        reply("¢συℓ∂ ησт ƒєт¢н α qυσтє. ρℓєαѕє тяу αgαιη ℓαтєя.");
     }
 });
