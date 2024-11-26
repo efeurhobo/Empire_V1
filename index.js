@@ -17,7 +17,8 @@ const util = require('util')
 const { sms,downloadMediaMessage } = require('./lib/msg')
 const axios = require('axios')
 const { File } = require('megajs')
-const prefix = '.'
+const path = require('path')
+const prefix = config.PREFIX
 
 const ownerNumber = ['2348078582627']
 
@@ -69,7 +70,17 @@ require("./plugins/" + plugin);
 console.log('Plugins installed successful ✅')
 console.log('Bot connected to whatsapp ✅')
 
-let up = `Wa-BOT connected successful ✅\n\nPREFIX: ${prefix}`;
+let up = `
+╭────《 *𝐄𝐦𝐩𝐢𝐫𝐞_𝐕𝟏 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝* 》────⊷
+│ ╭──────✧❁✧──────◆
+│ │ 🪀 ᴘʀᴇғɪx : *[${config.PREFIX}]*
+│ │ 🪀 User : ${pushName}
+│ │ 🪀 ʀᴀᴍ  : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+│ │ 🪀 ʀᴜɴᴛɪᴍᴇ : ${runtime(process.uptime())}
+│ │ 🪀 ᴠᴇʀsɪᴏɴ : *ᴠ.1.0.0*
+│ │ 🪀 ᴄʀᴇᴀᴛᴏʀ* : *𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞*
+│ ╰──────✧❁✧──────◆
+╰══════════════════⊷`;
 
 conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://telegra.ph/file/900435c6d3157c98c3c88.jpg` }, caption: up })
 
@@ -77,11 +88,61 @@ conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://teleg
 })
 conn.ev.on('creds.update', saveCreds)  
 
+        
+
+conn.ev.on('messages.update', async (updates) => {
+    for (const update of updates) {
+        if (update.update?.messageStubType === 8) { // نوع پیام حذف شده
+            const messageKey = update.key;
+            const chatId = messageKey.remoteJid;
+            const senderId = messageKey.participant || messageKey.remoteJid;
+            const senderMention = `@${senderId.split('@')[0]}`;
+            const timestamp = new Date(update.messageTimestamp * 1000).toLocaleString();
+
+            // بررسی پیام حذف شده
+            const deletedMessage = await conn.loadMessage(chatId, messageKey.id);
+
+            if (deletedMessage) {
+                const messageType = Object.keys(deletedMessage.message)[0];
+                let messageContent;
+
+                switch (messageType) {
+                    case 'conversation':
+                        messageContent = deletedMessage.message.conversation;
+                        break;
+                    case 'imageMessage':
+                        messageContent = '[تصویر]';
+                        break;
+                    case 'videoMessage':
+                        messageContent = '[ویدیو]';
+                        break;
+                    case 'audioMessage':
+                        messageContent = '[صدا]';
+                        break;
+                    case 'stickerMessage':
+                        messageContent = '[استیکر]';
+                        break;
+                    default:
+                        messageContent = '[نوع پیام ناشناخته]';
+                }
+
+                // ارسال پیام حذف شده
+                const text = `*{ ANTI DELETE }*\n\n*Message:* ${messageContent}\n\n*By:* ${senderMention}\n\n*Time:* ${timestamp}`;
+                conn.sendMessage(chatId, { text: text, mentions: [senderId] });
+            }
+        }
+    }
+});
+
+
+        
 conn.ev.on('messages.upsert', async(mek) => {
 mek = mek.messages[0]
 if (!mek.message) return	
 mek.message = (getContentType(mek.message) === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
-if (mek.key && mek.key.remoteJid === 'status@broadcast') return
+if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_READ_STATUS === "true"){
+await conn.readMessages([mek.key])
+}
 const m = sms(conn, mek)
 const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
@@ -133,6 +194,17 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
             }
 
 
+//=================================WORKTYPE=========================================== 
+if(!isOwner && config.MODE === "private") return
+if(!isOwner && isGroup && config.MODE === "inbox") return
+if(!isOwner && isGroup && config.MODE === "groups") return
+//======================================================
+        
+
+
+
+
+        
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
