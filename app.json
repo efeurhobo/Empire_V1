@@ -1,0 +1,42 @@
+{
+  "name": "Empire_V1",
+  "description": "Javascript WhatsApp bot made by YourName",
+  "logo": "https://files.catbox.moe/g4qzs7.jpg",
+  "keywords": ["Empire_V1","Bot"],
+  "success_url": "/",
+
+  "env": {
+    "SESSION_ID": {
+      "description": "Put the session-id below.",
+      "value",
+      "required": true
+      },
+    "MODE": {
+      "description": "Worktype of your bot. Use public/private, if private then only bot number can use it. If public then everyone can use it.",
+      "value": "private",
+      "required": "true"
+     },
+    "PREFIX": {
+      "description": "Enter your desired prefix for bot. you can set `all | . | .!*`",
+      "value": ".",
+      "required": "true"
+    },
+    "OWNER_NUMBER": {
+      "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
+      "value": "2348078582627",
+      "required": "true"
+    },
+    "SESSION_ID": {
+      "description": "put your SESSION_ID BELOW",
+      "value": "",
+      "required": "true"
+    }
+},
+
+     "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+        }
+     ],
+  "stack": "heroku-24"
+}
