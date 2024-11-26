@@ -13,4 +13,5 @@ ALIVE_MSG: process.env.ALIVE_MSG || "HI DEAR EMPIRE_V1 IS ONLINE",
 PREFIX: process.env.PREFIX || ".",
 OWNER_REACT: process.env.OWNER_REACT || "true",
 AUTO_REACT: process.env.AUTO_REACT || "true",
+OWNER_NAME: process.env.OWNER_NAME || "𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞",
 };
