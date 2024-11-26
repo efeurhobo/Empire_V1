@@ -71,11 +71,11 @@ console.log('Bot connected to whatsapp ✅')
 
 let up = `╭────《 *𝐄𝐦𝐩𝐢𝐫𝐞_𝐕𝟏 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝* 》────⊷
 │ ╭──────✧❁✧──────◆
-│ │ 🪀 *PREFIX* :[{config.PREFIX}]*
-│ │ 🪀 *USER* : *𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞*
+│ │ 🪀 *PREFIX* :*[{config.PREFIX}]*
+│ │ 🪀 *CREATOR* : *[{config.OWNER_NAME}]*
 │ │ 🪀 *RAM*  : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
 │ │ 🪀 *UPTIME* : ${runtime(process.uptime())}
-│ │ 🪀 *VERSION* : *ᴠ.1.0.0*
+│ │ 🪀 *VERSION* : *v1.0.0*
 │ │ 🪀 *CREATOR* : *𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞*
 │ ╰──────✧❁✧──────◆
 ╰══════════════════⊷`;
