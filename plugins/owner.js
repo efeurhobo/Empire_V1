@@ -76,7 +76,7 @@ cmd({
 // BLOCK/UNBLOCK USER
 const blockUnblockCommand = (pattern, status, message) => {
     cmd({
-        pattern,
+        pattern: "block",
         desc: `${status.charAt(0).toUpperCase() + status.slice(1)} a user.`,
         category: "owner",
         react: status === 'block' ? "🚫" : "✅",
