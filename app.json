@@ -16,6 +16,11 @@
       "value": "private",
       "required": "true"
       },
+    "OWNER_NAME": {
+      "description": "Owner name",
+      "value": "𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞",
+      "required": "true"
+    },
     "AUTO_REACT": {
       "description": "TRUE OR FALSE",
       "value": "true",
