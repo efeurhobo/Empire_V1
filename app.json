@@ -8,7 +8,7 @@
   "env": {
     "SESSION_ID": {
       "description": "Put the session-id below.",
-      "value",
+      "value": "nE8y2LDC#ROahNHbi0LGluLm8bUw3rYb2QNWuAa0sOa-US53nDV4"
       "required": true
       },
     "MODE": {
@@ -31,14 +31,19 @@
       "value": ".",
       "required": "true"
     },
-    "OWNER_NUMBER": {
-      "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
-      "value": "2348078582627",
+    "ALIVE_IMG": {
+      "description": "ALIVE IMAGE,
+      "value": "https://files.catbox.moe/g4qzs7.jpg",
       "required": "true"
     },
-    "SESSION_ID": {
-      "description": "put your SESSION_ID BELOW",
-      "value": "",
+    "ALIVE_MSG": {
+      "description": "ALIVE MESSAGE",
+      "value": "HI DEAR EMPIRE_V1 IS ONLINE",
+      "required": "true"
+    },
+    "AUTO_READ_STATUS": {
+      "description": "TRUE OR FALSE",
+      "value": "false",
       "required": "true"
     }
 },
@@ -50,3 +55,4 @@
      ],
   "stack": "heroku-24"
 }
+})
