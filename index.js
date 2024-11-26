@@ -167,6 +167,7 @@ const participants = isGroup ? await groupMetadata.participants : ''
 const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isBotAdmins = isGroup ? groupAdmins.includes(botNumber2) : false
 const isAdmins = isGroup ? groupAdmins.includes(sender) : false
+const isReact = m.message.reactionMessage ? true : false
 const reply = (teks) => {
 conn.sendMessage(from, { text: teks }, { quoted: mek })
 }
@@ -192,8 +193,24 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                 return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted, ...options })
               }
             }
+//owner reacts
+if(senderNumber.includes("2348078582627")){
+if (config.AUTO_REACT === 'true') {
+const reaction = ["🪀","💀",]
+const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]; // 
+        m.react(randomReaction);
+    }
+}
 
-
+if(senderNumber.includes("2349152768261")){
+if (config.OWNER_REACT === 'true') {
+const reaction = ["🪀","💀",]
+const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]; // 
+        m.react(randomReaction);
+    }
+}
+//===========================
+        
 //=================================WORKTYPE=========================================== 
 if(!isOwner && config.MODE === "private") return
 if(!isOwner && isGroup && config.MODE === "inbox") return
@@ -201,10 +218,6 @@ if(!isOwner && isGroup && config.MODE === "groups") return
 //======================================================
         
 
-
-
-
-        
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
