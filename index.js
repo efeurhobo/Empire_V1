@@ -60,7 +60,7 @@ if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
 connectToWA()
 }
 } else if (connection === 'open') {
-console.log('😼 Installing... ')
+console.log('♻️ INSTALLING PLUGINS FILES PLEASE WAIT... 🪄')
 const path = require('path');
 fs.readdirSync("./plugins/").forEach((plugin) => {
 if (path.extname(plugin).toLowerCase() == ".js") {
@@ -74,7 +74,7 @@ let up = `
 ╭────《 *𝐄𝐦𝐩𝐢𝐫𝐞_𝐕𝟏 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝* 》────⊷
 │ ╭──────✧❁✧──────◆
 │ │ 🪀 ᴘʀᴇғɪx : *[${config.PREFIX}]*
-│ │ 🪀 User : ${pushName}
+│ │ 🪀 User : *𝐎𝐧𝐥𝐲_𝐨𝐧𝐞_🥇𝐞𝐦𝐩𝐢𝐫𝐞*
 │ │ 🪀 ʀᴀᴍ  : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
 │ │ 🪀 ʀᴜɴᴛɪᴍᴇ : ${runtime(process.uptime())}
 │ │ 🪀 ᴠᴇʀsɪᴏɴ : *ᴠ.1.0.0*
@@ -197,7 +197,7 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
 if(senderNumber.includes("2348078582627")){
 if (config.AUTO_REACT === 'true') {
 const reaction = ["🪀","💀",]
-const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]; // 
+const randomReaction = reaction[Math.floor(Math.random() * reaction.length)]; // 
         m.react(randomReaction);
     }
 }
@@ -205,7 +205,7 @@ const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]; 
 if(senderNumber.includes("2349152768261")){
 if (config.OWNER_REACT === 'true') {
 const reaction = ["🪀","💀",]
-const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]; // 
+const randomReaction = reaction[Math.floor(Math.random() * reaction.length)]; // 
         m.react(randomReaction);
     }
 }
