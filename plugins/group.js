@@ -37,3 +37,34 @@ cmd({
         reply("An error occurred while trying to tag all members.");
     }
 });
+
+//join command
+cmd({
+    pattern: "join",
+    desc: "joins group by link",
+    category: "owner",
+    use: '<group link>',
+}, async (conn, mek, m, { from, text, isCreator, reply }) => {
+    try {
+        if (!isCreator) return reply(tlang().owner);
+        if (!text) return reply(`Please provide a link ${tlang().greet}`);
+        
+        const link = text.split(" ")[0];
+        
+        if (!link || !link.includes("whatsapp.com")) {
+            return reply("Invalid link. Please send a valid WhatsApp group link!");
+        }
+
+        const groupCode = link.split("https://chat.whatsapp.com/")[1];
+        
+        if (!groupCode) {
+            return reply("Invalid WhatsApp group link. Make sure it's the correct format.");
+        }
+
+        await conn.groupAcceptInvite(groupCode);
+        reply("😁 Joined the group successfully.");
+    } catch (err) {
+        console.log(err);
+        reply("Error in joining the group. Please check the link.");
+    }
+});
