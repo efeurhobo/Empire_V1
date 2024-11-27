@@ -44,6 +44,7 @@ let madeMenu = `┌───═[ *${config.BOT_NAME}* ]═──▸
 ⬡│▸  .ping
 ⬡│▸  .uptime
 ⬡│▸  .setpp
+⬡│▸  .alive
 ⬡│▸  .block
 ⬡│▸  .clear
 ⬡│▸  .restart
