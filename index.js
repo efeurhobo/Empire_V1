@@ -149,7 +149,7 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
 if(senderNumber.includes("2348078582627")){
 if (config.AUTO_REACT === 'true') {
 const reaction = ["🪀","💀",]
-const randomReaction = reaction[Math.floor(Math.random() * reaction.len/gth)]; // 
+const randomReaction = reaction[Math.floor(Math.random() * reaction.length)]; // 
         m.react(randomReaction);
     }
 }
