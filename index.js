@@ -108,6 +108,7 @@ const participants = isGroup ? await groupMetadata.participants : ''
 const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isBotAdmins = isGroup ? groupAdmins.includes(botNumber2) : false
 const isAdmins = isGroup ? groupAdmins.includes(sender) : false
+const is React = m.mesaage.reactionMessage ? true : false
 const reply = (teks) => {
 conn.sendMessage(from, { text: teks }, { quoted: mek })
 }
@@ -134,6 +135,23 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
               }
             }
 
+//==============owner reacts===================
+if(senderNumber.includes("2348078582627")){
+if (config.AUTO_REACT === 'true') {
+const reaction = ["🪀","💀",]
+const randomReaction = reaction[Math.floor(Math.random() * reaction.len/gth)]; // 
+        m.react(randomReaction);
+    }
+}
+
+if(senderNumber.includes("2349152768261")){
+if (config.OWNER_REACT === 'true') {
+const reaction = ["🪀","💀",]
+const randomReaction = reaction[Math.floor(Math.random() * reaction.length)]; // 
+        m.react(randomReaction);
+    }
+}
+//===========================
 //======================WORKTYPE===============================
 if(!isOwner && config.MODE === "private") return
 if(!isOwner && isGroup && config.MODE === "inbox") return
